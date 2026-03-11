@@ -3,29 +3,52 @@ import requests
 from datetime import datetime
 
 API_TOKEN = os.environ["CHATWORK_API_TOKEN"]
-ROOM_ID   = os.environ["CHATWORK_ROOM_ID"]
+ROOM_ID = os.environ["CHATWORK_ROOM_ID"]
 
 TASKS = [
     {
-        "name":      "田中",
+        "name": "田中",
         "accountId": "111111",
-        "body":      "週次報告書の提出をお願いします",
-        "timing":    "weekly",
-        "weekday":   0,
-        "day":       None,
+        "body": "週次報告書の提出をお願いします",
+        "timing": "weekly",
+        "weekday": 0,
+        "day": None,
     },
     {
-        "name":      "佐藤",
+        "name": "佐藤",
         "accountId": "222222",
-        "body":      "勤怠データの確認をお願いします",
-        "timing":    "monthly",
-        "weekday":   None,
-        "day":       25,
+        "body": "勤怠データの確認をお願いします",
+        "timing": "monthly",
+        "weekday": None,
+        "day": 25,
     },
 ]
 
 def create_task(task):
-    url = f"https://api.chatwork.com/v2/rooms/{ROOM_ID}/tasks"
-    res = requests.post(url,
+    url = "https://api.chatwork.com/v2/rooms/" + ROOM_ID + "/tasks"
+    res = requests.post(
+        url,
         headers={"X-ChatWorkToken": API_TOKEN},
-        data={"body": task["body"], "to_ids": task["accountId"], "limit_type": "none"}
+        data={
+            "body": task["body"],
+            "to_ids": task["accountId"],
+            "limit_type": "none"
+        }
+    )
+    if res.status_code == 200:
+        print(task["name"] + ": OK")
+    else:
+        print(task["name"] + ": NG " + res.text)
+
+def main():
+    now = datetime.now()
+    for task in TASKS:
+        if task["timing"] == "daily":
+            create_task(task)
+        elif task["timing"] == "weekly" and task["weekday"] == now.weekday():
+            create_task(task)
+        elif task["timing"] == "monthly" and task["day"] == now.day:
+            create_task(task)
+
+if __name__ == "__main__":
+    main()
