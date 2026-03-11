@@ -16,14 +16,7 @@ https://www.chatwork.com/#!rid359970432-2033482443050455040[/info]",
         "weekday": 0,
         "day": None,
     },
-    {
-        "name": "佐藤",
-        "accountId": "222222",
-        "body": "勤怠データの確認をお願いします",
-        "timing": "monthly",
-        "weekday": None,
-        "day": 25,
-    },
+   
 ]
 
 def create_task(task):
