@@ -1,0 +1,36 @@
+name: Chatwork タスク自動作成
+
+on:
+  schedule:
+    - cron: '0 0 * * 1-5'  # 平日毎朝9時JST
+  workflow_dispatch:         # 手動実行ボタンも有効
+
+jobs:
+  create-tasks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - name: タスク作成実行
+        env:
+          CHATWORK_API_TOKEN: ${{ secrets.CHATWORK_API_TOKEN }}
+          CHATWORK_ROOM_ID:   ${{ secrets.CHATWORK_ROOM_ID }}
+        run: python create_tasks.py
+```
+
+**④「Commit changes」→「Commit changes」で保存**
+
+---
+
+## 完成後のフォルダ構成イメージ
+```
+chatwork-auto-tasks/
+│
+├── create_tasks.py          ← さっき作ったファイル①
+│
+└── .github/
+    └── workflows/
+        └── create_tasks.yml ← さっき作ったファイル②
