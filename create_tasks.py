@@ -7,9 +7,11 @@ ROOM_ID = os.environ["CHATWORK_ROOM_ID"]
 
 TASKS = [
     {
-        "name": "田中",
-        "accountId": "111111",
-        "body": "週次報告書の提出をお願いします",
+        "name": "尾崎 美希",
+        "accountId": "mikiozaki",
+        "body": "[info][title]【連絡】休暇報告書提出の期限のお知らせ[/title]今月の休暇報告書提出の期限は3/24とします。提出先はグループチャット「人事BBS」にお願いします。
+（休暇報告書格納先：
+https://www.chatwork.com/#!rid359970432-2033482443050455040[/info]",
         "timing": "weekly",
         "weekday": 0,
         "day": None,
