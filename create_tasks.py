@@ -7,24 +7,33 @@ ROOM_ID = os.environ["CHATWORK_ROOM_ID"]
 
 TASKS = [
     {
-        "name": "尾崎美希",
-        "accountId": "mikiozaki",
-        "body": "週次報告書の提出をお願いします",
-        "timing": "weekly",
-        "weekday": 0,
-        "day": None,
+        "name": "安田璃奈子",
+        "accountId": "rinakoyasuda",
+        "body": "【連絡】休暇報告書提出の期限のお知らせ\n今月の休暇報告書を期限までに提出してください。提出先はグループチャット「人事BBS」にお願いします。\n（休暇報告書格納先：https://www.chatwork.com/#!rid359970432-2033482443050455040）",
+        "timing": "monthly",
+        "day": 15,
     },
     {
-        "name": "佐藤",
-        "accountId": "222222",
-        "body": "勤怠データの確認をお願いします",
+        "name": "島仲弘英",
+        "accountId": "hirohideshimanaka",
+        "body": "【連絡】休暇報告書提出の期限のお知らせ\n今月の休暇報告書を期限までに提出してください。提出先はグループチャット「人事BBS」にお願いします。\n（休暇報告書格納先：https://www.chatwork.com/#!rid359970432-2033482443050455040）",
         "timing": "monthly",
-        "weekday": None,
-        "day": 25,
+        "day": 15,
+    },
+    {
+        "name": "尾崎美希",
+        "accountId": "ozakimiki",
+        "body": "【連絡】休暇報告書提出の期限のお知らせ\n今月の休暇報告書を期限までに提出してください。提出先はグループチャット「人事BBS」にお願いします。\n（休暇報告書格納先：https://www.chatwork.com/#!rid359970432-2033482443050455040）",
+        "timing": "monthly",
+        "day": 15,
     },
 ]
 
 def create_task(task):
+    now = datetime.now()
+    limit_date = datetime(now.year, now.month, 23, 23, 59, 59)
+    limit_timestamp = int(limit_date.timestamp())
+
     url = "https://api.chatwork.com/v2/rooms/" + ROOM_ID + "/tasks"
     res = requests.post(
         url,
@@ -32,7 +41,8 @@ def create_task(task):
         data={
             "body": task["body"],
             "to_ids": task["accountId"],
-            "limit_type": "none"
+            "limit_type": "date",
+            "limit": limit_timestamp
         }
     )
     if res.status_code == 200:
@@ -43,11 +53,7 @@ def create_task(task):
 def main():
     now = datetime.now()
     for task in TASKS:
-        if task["timing"] == "daily":
-            create_task(task)
-        elif task["timing"] == "weekly" and task["weekday"] == now.weekday():
-            create_task(task)
-        elif task["timing"] == "monthly" and task["day"] == now.day:
+        if task["timing"] == "monthly" and task["day"] == now.day:
             create_task(task)
 
 if __name__ == "__main__":
