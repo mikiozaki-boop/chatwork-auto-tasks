@@ -1,4 +1,4 @@
-name: Chatwork タスク自動作成
+name: Chatwork 人事タスク自動作成
 
 on:
   schedule:
