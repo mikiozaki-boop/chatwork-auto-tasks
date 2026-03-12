@@ -21,13 +21,7 @@ TASKS = [
         "timing": "monthly",
         "day": 15,
     },
-    {
-        "name": "尾崎美希",
-        "accountId": "2769500",
-        "body": "【連絡】休暇報告書提出のお願い\n今月の休暇報告書を期限までに提出してください。提出先はグループチャット「人事BBS」にお願いします。\n（休暇報告書格納先：https://www.chatwork.com/#!rid359970432-2033482443050455040）",
-        "timing": "monthly",
-        "day": 15,
-    },
+   
 ]
 
 def get_limit_date(year, month):
