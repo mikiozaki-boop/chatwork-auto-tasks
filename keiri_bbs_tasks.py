@@ -13,6 +13,12 @@ MEMBERS = [
 
 TASK_BODY = "[info][title]【連絡】立替精算書提出のお願い[/title]提出期限までに立替精算書を作成し領収書を添付し部長→社長へ提出をお願いします。立替経費精算書#共通.xlsx[/info]"
 
+def get_delivery_date(year, month):
+    d = datetime(year, month, 25)
+    while d.weekday() >= 5 or jpholiday.is_holiday(d):
+        d -= timedelta(days=1)
+    return d
+
 def get_nth_business_day(year, month, n):
     day = 1
     count = 0
@@ -43,10 +49,10 @@ def create_task(member, limit_timestamp):
 
 def main():
     now = datetime.now()
-    third_biz_day = get_nth_business_day(now.year, now.month, 3)
+    delivery_date = get_delivery_date(now.year, now.month)
 
-    if now.date() != third_biz_day.date():
-        print("今日は3稼働日目ではないため実行しません")
+    if now.date() != delivery_date.date():
+        print("今日は配信日ではないため実行しません")
         return
 
     limit_day = get_nth_business_day(now.year, now.month, 3)
