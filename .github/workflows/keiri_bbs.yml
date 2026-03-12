@@ -17,4 +17,4 @@ jobs:
       - name: タスク作成実行
         env:
           CHATWORK_API_TOKEN: ${{ secrets.CHATWORK_API_TOKEN }}
-        run: python create_keiri_tasks.py
+        run: python keiri_bbs_tasks.py
