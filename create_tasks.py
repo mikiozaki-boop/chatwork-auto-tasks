@@ -11,21 +11,21 @@ TASKS = [
         "accountId": "rinakoyasuda",
         "body": "【連絡】休暇報告書提出の期限のお知らせ\n今月の休暇報告書を期限までに提出してください。提出先はグループチャット「人事BBS」にお願いします。\n（休暇報告書格納先：https://www.chatwork.com/#!rid359970432-2033482443050455040）",
         "timing": "monthly",
-        "day": 15,
+        "day": 12,
     },
     {
         "name": "島仲弘英",
         "accountId": "hirohideshimanaka",
         "body": "【連絡】休暇報告書提出の期限のお知らせ\n今月の休暇報告書を期限までに提出してください。提出先はグループチャット「人事BBS」にお願いします。\n（休暇報告書格納先：https://www.chatwork.com/#!rid359970432-2033482443050455040）",
         "timing": "monthly",
-        "day": 15,
+        "day": 12,
     },
     {
         "name": "尾崎美希",
         "accountId": "ozakimiki",
         "body": "【連絡】休暇報告書提出の期限のお知らせ\n今月の休暇報告書を期限までに提出してください。提出先はグループチャット「人事BBS」にお願いします。\n（休暇報告書格納先：https://www.chatwork.com/#!rid359970432-2033482443050455040）",
         "timing": "monthly",
-        "day": 15,
+        "day": 12,
     },
 ]
 
