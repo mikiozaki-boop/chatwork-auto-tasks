@@ -2,7 +2,7 @@ name: Chatwork タスク自動作成
 
 on:
   schedule:
-    - cron: '0 1 * * 1-5'
+    - cron: '0 2 15 * *'
   workflow_dispatch:
 
 jobs:
