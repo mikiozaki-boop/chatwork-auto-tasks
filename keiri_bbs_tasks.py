@@ -11,7 +11,7 @@ MEMBERS = [
     {"name": "島仲弘英",   "accountId": "8390505"},
 ]
 
-TASK_BODY = "【連絡】経理関連タスクのお知らせ\n期限までに対応をお願いします。"
+TASK_BODY = "[info][title]【連絡】立替精算書提出のお願い[/title]提出期限までに立替精算書を作成し領収書を添付し部長→社長へ提出をお願いします。立替経費精算書#共通.xlsx[/info]"
 
 def get_nth_business_day(year, month, n):
     day = 1
