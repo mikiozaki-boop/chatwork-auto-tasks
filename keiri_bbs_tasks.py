@@ -61,7 +61,7 @@ def main():
 
     next_year, next_month = get_next_month(now.year, now.month)
     limit_day = get_nth_business_day(next_year, next_month, 3)
-    limit_timestamp = int(datetime(limit_day.year, limit_day.month, limit_day.day, 23, 59, 59).timestamp())
+    limit_timestamp = int(datetime(limit_day.year, limit_day.month, limit_day.day, 14, 59, 59).timestamp())
     print("期限日: " + str(limit_day.date()))
 
     for member in MEMBERS:
