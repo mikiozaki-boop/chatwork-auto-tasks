@@ -20,15 +20,14 @@ def get_delivery_date(year, month):
     return d
 
 def get_nth_business_day(year, month, n):
-    day = 1
     count = 0
+    d = datetime(year, month, 1)
     while True:
-        d = datetime(year, month, day)
         if d.weekday() < 5 and not jpholiday.is_holiday(d):
             count += 1
             if count == n:
                 return d
-        day += 1
+        d += timedelta(days=1)
 
 def get_next_month(year, month):
     if month == 12:
