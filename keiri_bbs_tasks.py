@@ -30,6 +30,11 @@ def get_nth_business_day(year, month, n):
                 return d
         day += 1
 
+def get_next_month(year, month):
+    if month == 12:
+        return year + 1, 1
+    return year, month + 1
+
 def create_task(member, limit_timestamp):
     url = "https://api.chatwork.com/v2/rooms/" + KEIRI_ROOM_ID + "/tasks"
     res = requests.post(
@@ -50,12 +55,12 @@ def create_task(member, limit_timestamp):
 def main():
     now = datetime.now()
     delivery_date = get_delivery_date(now.year, now.month)
-
     if now.date() != delivery_date.date():
         print("今日は配信日ではないため実行しません")
         return
 
-    limit_day = get_nth_business_day(now.year, now.month, 3)
+    next_year, next_month = get_next_month(now.year, now.month)
+    limit_day = get_nth_business_day(next_year, next_month, 3)
     limit_timestamp = int(datetime(limit_day.year, limit_day.month, limit_day.day, 23, 59, 59).timestamp())
 
     for member in MEMBERS:
